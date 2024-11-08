@@ -6,7 +6,7 @@
 /*   By: kporceil <kporceil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 13:48:55 by kporceil          #+#    #+#             */
-/*   Updated: 2024/11/04 16:11:27 by kporceil         ###   ########.fr       */
+/*   Updated: 2024/11/07 09:49:23 by kporceil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ int		ft_isalnum(int c);
 int		ft_isascii(int c);
 int		ft_isprint(int c);
 
-/*                              to functions                                  */
+/*                            to functions                                    */
 
 int		ft_toupper(int c);
 int		ft_tolower(int c);
 
-/*                              str functions                                 */
+/*                             str functions                                  */
 
 size_t	ft_strlen(const char *s);
 char	*ft_strchr(const char *s, int c);
@@ -47,9 +47,9 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size);
 void	*ft_memset(void *s, int c, size_t n);
 void	*ft_bzero(void *s, size_t n);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
-void	*ft_memove(void *dest, const void *src, size_t n);
+void	*ft_memmove(void *dest, const void *src, size_t n);
 void	*ft_memchr(const void *s, int c, size_t n);
-int		ft_memcmp(const void *s, int c, size_t n);
+int		ft_memcmp(const void *s1, const void *s2, size_t n);
 
 /*                             malloc functions                               */
 
@@ -61,7 +61,7 @@ char	*ft_strdup(const char *s);
 int		ft_atoi(const char *nptr);
 
 /*                                                                            */
-/*                                 PART TWO                                   */
+/*                            TODO:PART TWO                                   */
 /*                                                                            */
 
 /*                                 str functions                              */
@@ -82,8 +82,16 @@ void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 
 /*                                                                            */
-/*                                 PART TWO                                   */
+/*                            TODO:PART BONUS                                 */
 /*                                                                            */
+
+/*                                 lst struct                                 */
+
+typedef struct s_list
+{
+	void			*content;
+	struct s_list	*next;
+}	t_list;
 
 /*                                 lst functions                              */
 
