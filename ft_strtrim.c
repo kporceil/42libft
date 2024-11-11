@@ -11,9 +11,8 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-int	ft_isset(char c, const char *set)
+static int	ft_isset(char c, const char *set)
 {
 	size_t	i;
 
@@ -40,9 +39,3 @@ char	*ft_strtrim(char const *s1, char const *set)
 		end--;
 	return (ft_substr(s1, start, end - start + 1));
 }
-//
-//int	main(int argc, char **argv)
-//{
-//	printf("%s\n", ft_strtrim(argv[1], argv[2]));
-//	return (0);
-//}
