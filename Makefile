@@ -1,16 +1,14 @@
-NAME := libft.a
+override NAME := libft.a
 
-SONAME := libft.so
+override BUILDDIR := .build/
 
-BUILDDIR := .build/
+override OBJDIR := $(addprefix $(BUILDDIR), objs/)
 
-OBJDIR := $(addprefix $(BUILDDIR), objs/)
+override DEPDIR := $(addprefix $(BUILDDIR), deps/)
 
-DEPDIR := $(addprefix $(BUILDDIR), deps/)
+override SRCDIR := ./
 
-SRCDIR := ./
-
-FILE := ft_isalpha \
+BASENAME := ft_isalpha \
 		   ft_isascii \
 		   ft_isdigit \
 		   ft_isprint \
@@ -41,55 +39,68 @@ FILE := ft_isalpha \
 		   ft_strmapi \
 		   ft_striteri \
 		   ft_itoa \
-		   ft_strjoin
+		   ft_strjoin \
+		   ft_strtrim \
+		   ft_split
 
-SRCFILE := $(addsuffix .c, $(FILE))
+BONUS_BASENAME := ft_lstnew_bonus \
+				  ft_lstadd_front_bonus \
+				  ft_lstsize_bonus \
+				  ft_lstlast_bonus \
+				  ft_lstadd_back_bonus \
+				  ft_lstdelone_bonus \
+				  ft_lstclear_bonus \
+				  ft_lstiter_bonus \
+				  ft_lstmap_bonus
 
-OBJFILE := $(addsuffix .o, $(FILE))
+override SRCFILE := $(addsuffix .c, $(BASENAME))
 
-DEPFILE := $(addsuffix .d, $(FILE))
+override OBJFILE := $(addsuffix .o, $(BASENAME))
 
-SRCS := $(addprefix $(SRCDIR), $(SRCFILE))
+override DEPFILE := $(addsuffix .d, $(BASENAME))
 
-OBJS := $(addprefix $(OBJDIR), $(OBJFILE))
+override SRCS := $(addprefix $(SRCDIR), $(SRCFILE))
 
-DEPS := $(addprefix $(DEPDIR), $(DEPFILE))
+override OBJS := $(addprefix $(OBJDIR), $(OBJFILE))
+
+override DEPS := $(addprefix $(DEPDIR), $(DEPFILE))
 
 CC := cc
 
 CFLAGS := -Wall -Wextra -Werror
 
-CPPFLAGS := -I
+override CPPFLAGS := -I
 
-INCS := .
+override INCS := ./
 
-DEPSFLAGS := -MMD -MP -MF
+override DEPSFLAGS := -MMD -MP -MF
 
-SOFLAGS := -fPIC
+override AR := ar
 
-AR := ar
+override ARFLAGS := rcs
 
-ARFLAGS := rcs
+override RM := rm -rf
 
-RM := rm -rf
+override MAKEFLAGS += --no-print-directory
 
-all: $(NAME)
+EMOJI := ✅
+
+all:
+	@$(MAKE) $(NAME)
 
 $(NAME): $(OBJS)
-	@echo "\033[0;92m"
+	@echo "\033[0;94m"
+	@echo -n "$(EMOJI)"
 	$(AR) $(ARFLAGS) $(NAME) $(OBJS)
 	@echo "\033[0m"
 
-so: $(SONAME)
-
-$(SONAME): $(OBJS)
-	@echo "\033[0;94m"
-	$(CC) -shared -o $(SONAME) $(OBJS)
-	@echo "\033[0m"
+bonus:
+	@$(MAKE) $(NAME) BASENAME="$(BASENAME) $(BONUS_BASENAME)" EMOJI="✨"
 
 $(OBJDIR)%.o: $(SRCDIR)%.c | $(OBJDIR) $(DEPDIR)
 	@echo -n "\033[0;90m"
-	$(CC) $(CFLAGS) $(SOFLAGS) $(CPPFLAGS) $(INCS) $(DEPSFLAGS) $(DEPDIR)$*.d -c $< -o $@
+	@echo -n "🔨"
+	$(CC) $(CFLAGS) $(CPPFLAGS) $(INCS) $(DEPSFLAGS) $(DEPDIR)$*.d -c $< -o $@
 	@echo -n "\033[0m"
 
 $(OBJDIR) $(DEPDIR):
@@ -97,18 +108,18 @@ $(OBJDIR) $(DEPDIR):
 
 clean:
 	@echo -n "\033[0;91m"
+	@echo -n "🗑️"
 	$(RM) $(BUILDDIR)
 	@echo -n "\033[0m"
 
 fclean: clean
 	@echo -n "\033[0;91m"
+	@echo -n "🗑️"
 	$(RM) $(NAME) $(SONAME)
 	@echo -n "\033[0m"
 
 re: fclean all
 
-reso: fclean so
+-include $(DEPS)
 
--include DEPS
-
-.PHONY: all clean fclean re so reso
+.PHONY: all clean fclean re bonus

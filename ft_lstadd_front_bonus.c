@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_lstadd_front_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kporceil <kporceil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/05 00:06:34 by kporceil          #+#    #+#             */
-/*   Updated: 2024/11/11 00:00:28 by kporceil         ###   ########lyon.fr   */
+/*   Created: 2024/11/11 03:57:16 by kporceil          #+#    #+#             */
+/*   Updated: 2024/11/11 03:59:04 by kporceil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	size_t	i;
-
-	i = -1;
-	while (++i < n)
-		if (((const unsigned char *)s)[i] == (unsigned char)c)
-			return ((void *)s + i);
-	return (NULL);
+	new->next = *lst;
+	*lst = new;
 }

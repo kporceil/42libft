@@ -6,7 +6,7 @@
 /*   By: kporceil <kporceil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 13:48:55 by kporceil          #+#    #+#             */
-/*   Updated: 2024/11/07 09:49:23 by kporceil         ###   ########lyon.fr   */
+/*   Updated: 2024/11/11 03:57:33 by kporceil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char	*ft_strdup(const char *s);
 int		ft_atoi(const char *nptr);
 
 /*                                                                            */
-/*                            TODO:PART TWO                                   */
+/*                            PART TWO                                        */
 /*                                                                            */
 
 /*                                 str functions                              */

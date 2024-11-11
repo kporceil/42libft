@@ -6,7 +6,7 @@
 /*   By: kporceil <kporceil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 09:47:59 by kporceil          #+#    #+#             */
-/*   Updated: 2024/11/07 17:01:49 by kporceil         ###   ########lyon.fr   */
+/*   Updated: 2024/11/11 05:27:17 by kporceil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	size_t	s_len;
 	char	*sub_s;
 
-	if (!s)
-		return (NULL);
 	s_len = ft_strlen(s);
 	malloc_size = 0;
 	i = 0;
