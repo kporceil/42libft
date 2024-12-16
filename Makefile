@@ -1,4 +1,4 @@
-override NAME := libft.a
+NAME := libft.a
 
 override BUILDDIR := .build/
 
@@ -41,29 +41,22 @@ BASENAME := ft_isalpha \
 		   ft_itoa \
 		   ft_strjoin \
 		   ft_strtrim \
-		   ft_split
+		   ft_split \
+		   ft_lstnew \
+		   ft_lstadd_front \
+		   ft_lstsize \
+		   ft_lstlast \
+		   ft_lstadd_back \
+		   ft_lstdelone \
+		   ft_lstclear \
+		   ft_lstiter \
+		   ft_lstmap
 
-BONUS_BASENAME := ft_lstnew_bonus \
-				  ft_lstadd_front_bonus \
-				  ft_lstsize_bonus \
-				  ft_lstlast_bonus \
-				  ft_lstadd_back_bonus \
-				  ft_lstdelone_bonus \
-				  ft_lstclear_bonus \
-				  ft_lstiter_bonus \
-				  ft_lstmap_bonus
+override SRCS := $(addprefix $(SRCDIR), $(addsuffix .c, $(BASENAME)))
 
-override SRCFILE := $(addsuffix .c, $(BASENAME))
+override OBJS := $(addprefix $(OBJDIR), $(addsuffix .o, $(BASENAME)))
 
-override OBJFILE := $(addsuffix .o, $(BASENAME))
-
-override DEPFILE := $(addsuffix .d, $(BASENAME))
-
-override SRCS := $(addprefix $(SRCDIR), $(SRCFILE))
-
-override OBJS := $(addprefix $(OBJDIR), $(OBJFILE))
-
-override DEPS := $(addprefix $(DEPDIR), $(DEPFILE))
+override DEPS := $(addprefix $(DEPDIR), $(addsuffix .d, $(BASENAME)))
 
 CC := cc
 
@@ -71,9 +64,9 @@ CFLAGS := -Wall -Wextra -Werror
 
 override CPPFLAGS := -I
 
-override INCS := ./
+override INCS := ./includes
 
-override DEPSFLAGS := -MMD -MP -MF
+override DEPSFLAGS := -MD -MP -MF
 
 override AR := ar
 
@@ -83,45 +76,28 @@ override RM := rm -rf
 
 override MAKEFLAGS += --no-print-directory
 
-EMOJI := ✅
-
 all:
 	@$(MAKE) $(NAME)
 
 $(NAME): $(OBJS)
-	@echo "\033[0;94m"
-	@echo -n "$(EMOJI)"
 	$(AR) $(ARFLAGS) $(NAME) $(OBJS)
-	@echo "\033[0m"
-
-bonus:
-	@$(MAKE) $(NAME) BASENAME="$(BASENAME) $(BONUS_BASENAME)" EMOJI="✨"
+	@echo ""
+	@echo "libft.a created."
 
 $(OBJDIR)%.o: $(SRCDIR)%.c | $(OBJDIR) $(DEPDIR)
-	@echo -n "\033[0;90m"
-	@echo -n "🔨"
 	$(CC) $(CFLAGS) $(CPPFLAGS) $(INCS) $(DEPSFLAGS) $(DEPDIR)$*.d -c $< -o $@
-	@echo -n "\033[0m"
 
 $(OBJDIR) $(DEPDIR):
 	mkdir -p $@
 
 clean:
-	@echo -n "\033[0;91m"
-	@echo -n "🗑️"
 	$(RM) $(BUILDDIR)
-	@echo -n "\033[0m"
 
 fclean: clean
-	@echo -n "\033[0;91m"
-	@echo -n "🗑️"
 	$(RM) $(NAME) $(SONAME)
-	@echo -n "\033[0m"
 
 re: fclean all
 
-rebonus: fclean bonus
-
 -include $(DEPS)
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re
