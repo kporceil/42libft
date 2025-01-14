@@ -6,7 +6,7 @@ override OBJDIR := $(addprefix $(BUILDDIR), objs/)
 
 override DEPDIR := $(addprefix $(BUILDDIR), deps/)
 
-override SRCDIR := ./
+override SRCDIR := srcs/
 
 BASENAME := ft_isalpha \
 		   ft_isascii \
@@ -50,7 +50,8 @@ BASENAME := ft_isalpha \
 		   ft_lstdelone \
 		   ft_lstclear \
 		   ft_lstiter \
-		   ft_lstmap
+		   ft_lstmap \
+		   ft_sqrt
 
 override SRCS := $(addprefix $(SRCDIR), $(addsuffix .c, $(BASENAME)))
 

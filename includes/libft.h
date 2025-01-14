@@ -6,7 +6,7 @@
 /*   By: kporceil <kporceil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 13:48:55 by kporceil          #+#    #+#             */
-/*   Updated: 2024/11/11 03:57:33 by kporceil         ###   ########lyon.fr   */
+/*   Updated: 2025/01/08 18:37:14 by kporceil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char	*ft_strdup(const char *s);
 
 /*                             other                                          */
 
-int		ft_atoi(const char *nptr);
+int		ft_atoi(const char *nptr, int *error);
 
 /*                                                                            */
 /*                            PART TWO                                        */
@@ -82,7 +82,7 @@ void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 
 /*                                                                            */
-/*                            TODO:PART BONUS                                 */
+/*                                 PART BONUS                                 */
 /*                                                                            */
 
 /*                                 lst struct                                 */
@@ -104,5 +104,11 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+
+/*                                                                            */
+/*                                 OTHERS                                     */
+/*                                                                            */
+
+size_t	ft_sqrt(size_t value);
 
 #endif
